@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name: Joomla to WP PDF Embeds
+ * Plugin URI:  https://github.com/theyo-tester/joomla-to-wp-pdf-embeds
  * Description: Renders legacy {pdf}...{/pdf} tags as PDF embeds.
  * Version: 1.1.0
  * Author:      teoli

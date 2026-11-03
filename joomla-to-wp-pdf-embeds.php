@@ -2,53 +2,53 @@
 /**
  * Plugin Name: Legacy PDF Embeds
  * Description: Renders legacy {pdf}...{/pdf} tags as PDF embeds.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author:      teoli
  * Author URI:  https://github.com/theyo-tester
  * Text Domain: joomla-to-wp-mp3-embeds
  */
 
 
-add_filter( 'the_content', 'mysite_render_legacy_pdf_embeds', 8 );
+add_filter( 'the_content', 'mysite_render_joomla_pdf_embeds', 8 );
 
-function mysite_render_legacy_pdf_embeds( $content ) {
-    // Limit this to the main content of a singular post or page.
-    if ( ! is_singular() || ! in_the_loop() || ! is_main_query() ) {
+function mysite_render_joomla_pdf_embeds( $content ) {
+    // Allow single posts/pages, the blog homepage, and archives, but stay within the main query loop.
+    if ( ! ( is_singular() || is_home() || is_archive() ) || ! in_the_loop() || ! is_main_query() ) {
         return $content;
     }
 
     return preg_replace_callback(
         '~\{pdf\}(.*?)\{/pdf\}~is',
-        'mysite_render_one_legacy_pdf_embed',
+        'mysite_render_one_joomla_pdf_embed',
         $content
     );
 }
 
-function mysite_render_one_legacy_pdf_embed( $matches ) {
-    $parts = explode( '|', trim( $matches[1] ) );
-    $url   = trim( array_shift( $parts ) );
+function mysite_render_one_joomla_pdf_embed( $matches ) {
+    $parts = explode( '\vert{}', trim($matches[1] ) );
+    $url   = trim( array_shift($parts ) );
 
     $height = 700;
     $width  = '100%';
 
-    foreach ( $parts as $part ) {
-        if ( ! preg_match( '/^\s*(height|width)\s*:\s*(.*?)\s*$/i', $part, $setting ) ) {
+    foreach ( $parts as$part ) {
+        if ( ! preg_match( '/^\s*(height|width)\s*:\s*(.*?)\s*$/i', $part,$setting ) ) {
             continue;
         }
 
         if ( 'height' === strtolower( $setting[1] ) ) {
-            $height = absint( $setting[2] );
-            $height = max( 200, min( 3000, $height ) );
+            $height = absint($setting[2] );
+            $height = max( 200, min( 3000,$height ) );
         } else {
             // Accept values such as 100%, 600px, or 80vw.
-            $candidate = trim( $setting[2] );
-            if ( preg_match( '/^\d+(?:\.\d+)?(?:%|px|vw)$/', $candidate ) ) {
-                $width = $candidate;
+            $candidate = trim($setting[2] );
+            if ( preg_match( '/^\d+(?:\.\d+)?(?:%|px|vw)$/',$candidate ) ) {
+                $width =$candidate;
             }
         }
     }
 
-    $url = esc_url( $url );
+    $url = esc_url($url );
     if ( ! $url ) {
         return '';
     }
@@ -60,7 +60,6 @@ function mysite_render_one_legacy_pdf_embed( $matches ) {
             </iframe>
         </div>',
         esc_attr( $width ),
-        $url,
-        $height
+        $url,$height
     );
 }

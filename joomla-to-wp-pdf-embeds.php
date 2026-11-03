@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Legacy PDF Embeds
+ * Plugin Name: Joomla to WP PDF Embeds
  * Description: Renders legacy {pdf}...{/pdf} tags as PDF embeds.
  * Version: 1.1.0
  * Author:      teoli

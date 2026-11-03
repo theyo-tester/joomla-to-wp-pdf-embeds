@@ -6,6 +6,8 @@
  * Author:      teoli
  * Author URI:  https://github.com/theyo-tester
  * Text Domain: joomla-to-wp-mp3-embeds
+ * Requires at least: 5.0
+ * Requires PHP: 7.4
  */
 
 

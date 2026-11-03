@@ -26,7 +26,7 @@ This plugin dynamically intercepts content during WordPress rendering, parses an
 
 The easiest way to install the plugin is by downloading the pre-built release package:
 
-1. Go to the [Releases](https://github.com/your-username/joomla-to-wp-pdf-embeds/releases) page of this repository and download the latest `.zip` release file.
+1. Go to the [Releases](https://github.com/theyo-tester/joomla-to-wp-pdf-embeds/releases) page of this repository and download the latest `.zip` release file.
 2. Log in to your WordPress Admin dashboard.
 3. Navigate to **Plugins > Add New** (or **Plugins > Add New Plugin** depending on your WordPress version).
 4. Click the **Upload Plugin** button at the top of the screen.
